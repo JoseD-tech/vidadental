@@ -1,0 +1,447 @@
+@import 'variables';
+@import 'mixins';
+
+html {
+    @include box-sizing(border-box);
+}
+
+*,*::after,*::before {
+    @include box-sizing(inherit);
+}
+
+body {
+    font-family: $fuentePrimaria;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1,h2,h3 {
+    font-weight: 700;
+    margin: 0;
+}
+
+h1 {
+    font-size: 2.8rem;
+}
+
+.contenedor {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.seccion {
+    margin: 3rem 0;
+}
+
+.seccion-movil {
+    @extend .seccion;
+    @include tablet {
+        margin: 0;
+    }
+}
+
+.activo {
+    display: flex !important;
+}
+
+/*header*/
+
+.header {
+    height: 100vh;
+    @include bg-img('../img/hero1.jpg');
+    @include tablet {
+        display: grid;
+        grid-template-rows: 15% 1fr;
+    }
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0,0,0,0.3);
+    }
+
+    .hero, .contenido-header {
+        position: relative;
+    }
+
+    .hero {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        padding: 1rem 0; 
+        @include tablet {
+            align-items: center;
+            flex-direction: row;
+            width: 95%;
+            margin: 0 auto;
+        }
+        
+
+        .logo {
+            margin-left: 1rem;
+            h1 {
+                color: white;
+                text-align: left;
+            }
+        }
+
+        .nav-movil {
+            position: absolute;
+            top: 1.3rem;
+            right: 1.8rem;
+
+            i {
+                color: white;
+                font-size: 3rem;
+             }
+        }
+
+        .nav-movil {
+            @include tablet {
+                display: none;
+            }
+        }
+
+        .navegacion {
+            display: none;
+            margin-top: 1rem;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            background-color: black;
+            position: absolute;
+            z-index: 1;
+            top: 4rem;
+            bottom: auto;
+            left: 0;
+            right: 0;
+            @include tablet {
+                display: flex;
+                flex-direction: row;
+                margin-top: 0;
+                position: unset;
+                width: unset;
+                background-color: transparent;
+            }
+            
+                a {
+                    display: block;
+                    color: white;
+                    font-size: 1.2rem;
+                    padding: 1rem;
+                    margin-right: .2rem;
+                    transition: all .3s ease-in-out;
+                    border-radius: 2px;
+
+                    &:hover {
+                        background-color: $colorSecundario;
+                        
+                    }
+
+                    &:last-of-type {
+                        margin-right: 0;
+                    }
+                }
+            }
+    }
+
+    .contenido-header {
+        align-self: center;
+
+        h2 {
+            color: white;
+            text-transform: uppercase;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+    }
+}
+
+/*Contenido Principal*/
+
+/*Servicios*/
+
+.contenido-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    grid-column-gap: 1rem;
+
+    .card {
+        text-align: center;
+        padding: 3rem 0;
+
+        .titulo {
+            font-size: 2.3rem;
+            text-transform: uppercase;
+            font-weight: 700;
+
+            &::after {
+                content: '';
+                display: block;
+                height: 0.3rem;
+                width: 25%;
+                margin: 0 auto;
+                margin-top: 1rem;
+                background-color: $colorCuarto;
+            }
+        }
+
+        i {
+            color: $colorPrimario;
+            font-size: 4rem;
+            margin-top: 1rem;
+        }
+
+        p {
+            font-size: 1.6rem;
+            padding: 0 1rem;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+    }
+}
+
+/*Salud bucal*/
+
+.salud {
+    @include tablet {
+        background: linear-gradient(to right, white 60%, $colorTerciario);
+    }
+    
+    .texto {
+        text-align: center;
+        align-self: center;
+        padding: 0 1rem;
+        h2 {
+            font-weight: 700;
+            font-size: 2rem;
+            text-transform: uppercase;
+            color: $colorSecundario;
+        }
+
+        p {
+            font-weight: 300;
+            font-size: 1.6rem
+        }
+    }
+    .img-content {
+        @include bg-img('../img/salud.jpg');
+        height: 500px;
+        position: relative;
+    
+        @include tablet {
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(to right, transparent 50%, #ffffff);
+            }
+        }
+        
+    }
+}
+
+.espertos {
+    @include tablet {
+       background: linear-gradient(to left, white 60%, $colorTerciario); 
+    }
+    
+    
+    .texto {
+        text-align: center;
+        align-self: center;
+        padding: 0 1rem;
+        h2 {
+            font-weight: 700;
+            font-size: 2rem;
+            text-transform: uppercase;
+            color: $colorSecundario;
+        }
+
+        p {
+            font-weight: 300;
+            font-size: 1.6rem
+        }
+    }
+
+    .img-content2 {
+        @include bg-img('../img/espertos.jpg');
+        height: 500px;
+        position: relative;
+    
+        @include tablet {
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(to left, transparent 50%, #ffffff);
+            }
+        }
+        
+    }
+}
+
+.cuidado {
+    @include tablet {
+        background: linear-gradient(to right, white 60%, $colorTerciario);
+    }
+    
+    .texto {
+        text-align: center;
+        align-self: center;
+        padding: 0 1rem;
+        h2 {
+            font-weight: 700;
+            font-size: 2rem;
+            text-transform: uppercase;
+            color: $colorSecundario;
+        }
+
+        p {
+            font-weight: 300;
+            font-size: 1.6rem
+        }
+    }
+    
+    .img-content3 {
+        @include bg-img('../img/cuidado.jpg');
+        height: 500px;
+        position: relative;
+    
+        @include tablet {
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(to right, transparent 50%, #ffffff);
+            }
+        }
+        
+    }
+}
+
+.sonrisa {
+    @include tablet {
+        background: linear-gradient(to left, white 60%, $colorTerciario);
+    }
+    
+    .texto {
+        text-align: center;
+        align-self: center;
+        padding: 0 1rem;
+        h2 {
+            font-weight: 700;
+            font-size: 2rem;
+            text-transform: uppercase;
+            color: $colorSecundario;
+        }
+
+        p {
+            font-weight: 300;
+            font-size: 1.6rem
+        }
+    }
+    
+    .img-content4 {
+        @include bg-img('../img/sonrisa.jpg');
+        height: 500px;
+        position: relative;
+    
+        @include tablet {
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(to left, transparent 50%, #ffffff);
+            }
+        }
+ 
+    }
+}
+
+.contacto {
+    @include tablet {
+        background: linear-gradient(to left, white 60%, $colorTerciario);
+    }
+    
+    .texto {
+        text-align: center;
+        align-self: center;
+        padding: 0 1rem;
+        h2 {
+            font-weight: 700;
+            font-size: 2rem;
+            text-transform: uppercase;
+            color: $colorSecundario;
+        }
+
+        p {
+            font-weight: 300;
+            font-size: 1.6rem
+        }
+    }
+    
+    .img-content5 {
+        @include bg-img('../img/contactanos.jpg');
+        height: 500px;
+        position: relative;
+    
+        @include tablet {
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(to left, transparent 50%, #ffffff);
+            }
+        }
+        
+    }
+}
+
+footer {
+    background-color: $colorSecundario;
+    padding: 1rem 0;
+    text-align: center;
+    p {
+        margin: 0;
+        color: white;
+    }
+}
+
+
+/*para posicionar con grid*/
+
+.grid-position {
+    grid-row: 2/3;
+    @include tablet {
+        grid-row: unset;
+    }
+}

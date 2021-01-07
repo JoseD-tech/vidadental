@@ -1,0 +1,33 @@
+/*funciones*/
+
+@mixin box-sizing($valor) {
+    box-sizing: $valor;
+}
+
+/*Para imagen de fondo*/
+@mixin bg-img($url) {
+    background-image: url($url);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+/*media querys*/
+
+@mixin telefono {
+    @media (min-width: 480px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: 1000px) {
+        @content;
+    }
+}
